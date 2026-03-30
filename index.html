@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/webp" href="https://zeralabs.org/zeralabs-logotype.webp" />
+  <link rel="shortcut icon" type="image/webp" href="https://zeralabs.org/zeralabs-logotype.webp" />
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -75,8 +77,9 @@
     }
 
     .nav-logo-icon {
-      width: 36px;
-      height: 36px;
+      height: 28px;
+      width: auto;
+      display: block;
     }
 
     .nav-logo-text {
@@ -142,22 +145,7 @@
     }
 
     .breadcrumb {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      color: var(--brand-green);
-      text-decoration: none;
-      opacity: 0.8;
-      margin-bottom: 32px;
-      transition: opacity 0.2s;
-    }
-
-    .breadcrumb:hover { opacity: 1; }
-
-    .breadcrumb svg {
-      width: 14px;
-      height: 14px;
+      display: none;
     }
 
     .version-badge {
@@ -361,6 +349,9 @@
       text-decoration: none;
       transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
       box-shadow: 0 0 12px rgba(82, 201, 125, 0.3);
+      /* Hide URL in status bar on hover */
+      -webkit-user-select: none;
+      user-select: none;
     }
 
     .download-btn:hover {
@@ -650,6 +641,8 @@
       text-decoration: none;
       transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
       box-shadow: 0 0 20px rgba(82, 201, 125, 0.35);
+      -webkit-user-select: none;
+      user-select: none;
     }
 
     .cta-btn:hover {
@@ -868,13 +861,7 @@
   <!-- ── NAVIGATION ── -->
   <nav>
     <a href="https://zeralabs.org" class="nav-logo">
-      <!-- Zera Logo SVG (inline recreation) -->
-      <svg class="nav-logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="36" height="36" rx="6" fill="#08140c"/>
-        <rect x="2" y="2" width="32" height="32" rx="4" stroke="#52c97d" stroke-width="1.5" stroke-dasharray="4 2"/>
-        <path d="M9 10 L27 10 L14 18 L27 26 L9 26" stroke="#52c97d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      </svg>
-      <span class="nav-logo-text">ZERA</span>
+      <img class="nav-logo-icon" src="https://zeralabs.org/zeralabs-logotype.webp" alt="Zera Labs" />
     </a>
     <ul class="nav-links">
       <li><a href="https://zeralabs.org">HOME</a></li>
@@ -899,14 +886,7 @@
   <!-- ── HERO ── -->
   <main>
     <section class="hero">
-      <a href="https://zeralabs.org/downloads" class="breadcrumb fade-up fade-up-1">
-        <svg viewBox="0 0 14 14" fill="none">
-          <path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        Back to downloads
-      </a>
-
-      <div class="version-badge fade-up fade-up-2">
+      <div class="version-badge fade-up fade-up-1">
         <span class="version-tag">v0.1.0</span>
         <span class="release-date">Released Jan 18, 2026</span>
       </div>
@@ -963,9 +943,8 @@
               <span class="meta-value">ZIP</span>
             </div>
           </div>
-          <a
+          <button
             class="download-btn"
-            href="https://api.files.link/v1/p/04f7d60f-b7f4-417d-bdb7-4673f9a33aa0"
             onclick="window.location.href='https://api.files.link/v1/p/04f7d60f-b7f4-417d-bdb7-4673f9a33aa0';"
           >
             <svg viewBox="0 0 16 16" fill="none">
@@ -973,7 +952,7 @@
               <path d="M2 13h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
             </svg>
             Download
-          </a>
+          </button>
         </div>
 
         <!-- Mac Card (SECONDARY) -->
@@ -1004,9 +983,8 @@
               <span class="meta-value">DMG</span>
             </div>
           </div>
-          <a
+          <button
             class="download-btn secondary"
-            href="https://downloads.zeralabs.org/Zera%20Desktop_0.1.0_aarch64.dmg"
             onclick="window.location.href='https://downloads.zeralabs.org/Zera%20Desktop_0.1.0_aarch64.dmg';"
           >
             <svg viewBox="0 0 16 16" fill="none">
@@ -1014,7 +992,7 @@
               <path d="M2 13h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
             </svg>
             Download
-          </a>
+          </button>
         </div>
 
       </div>
@@ -1126,9 +1104,8 @@
       <div class="cta-banner">
         <h2>Ready to get started?</h2>
         <p>Download Zera Desktop for Windows and start managing your private cash vouchers securely — no internet connection required.</p>
-        <a
+        <button
           class="cta-btn"
-          href="https://api.files.link/v1/p/04f7d60f-b7f4-417d-bdb7-4673f9a33aa0"
           onclick="window.location.href='https://api.files.link/v1/p/04f7d60f-b7f4-417d-bdb7-4673f9a33aa0';"
         >
           <svg viewBox="0 0 16 16" fill="none" width="18" height="18">
@@ -1136,7 +1113,7 @@
             <path d="M2 13h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
           Download for Windows
-        </a>
+        </button>
       </div>
     </section>
   </main>
@@ -1146,12 +1123,7 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <a href="https://zeralabs.org" class="footer-logo">
-          <svg width="28" height="28" viewBox="0 0 36 36" fill="none">
-            <rect width="36" height="36" rx="6" fill="#08140c"/>
-            <rect x="2" y="2" width="32" height="32" rx="4" stroke="#52c97d" stroke-width="1.5" stroke-dasharray="4 2"/>
-            <path d="M9 10 L27 10 L14 18 L27 26 L9 26" stroke="#52c97d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          </svg>
-          <span class="footer-logo-text">Zera Labs</span>
+          <img src="https://zeralabs.org/zeralabs-logotype.webp" alt="Zera Labs" style="height:28px;width:auto;display:block;" />
         </a>
         <p class="footer-tagline">Designed &amp; engineered by ZeraLabs in Texas. Zero-Knowledge Digital Cash and Privacy Protocols.</p>
         <div class="footer-social">
