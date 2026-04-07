@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Zera Desktop App is Here</title>
+  <!--[if mso]>
+  <noscript>
+    <xml>
+      <o:OfficeDocumentSettings>
+        <o:PixelsPerInch>96</o:PixelsPerInch>
+      </o:OfficeDocumentSettings>
+    </xml>
+  </noscript>
+  <![endif]-->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f0f4f1;
+      font-family: 'Inter', Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      color: #1a1a1a;
+      padding: 40px 16px;
+    }
+
+    .email-wrapper {
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    /* Pre-header */
+    .preheader {
+      font-size: 0;
+      line-height: 0;
+      max-height: 0;
+      overflow: hidden;
+      mso-hide: all;
+      visibility: hidden;
+      color: #f0f4f1;
+    }
+
+    /* Top bar */
+    .top-bar {
+      background-color: #08140c;
+      border-radius: 12px 12px 0 0;
+      padding: 18px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .top-bar-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .top-bar-logo img {
+      height: 26px;
+      width: auto;
+      display: block;
+    }
+
+    .top-bar-tagline {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: rgba(238, 250, 242, 0.4);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* Hero */
+    .hero {
+      background-color: #0b1f10;
+      background-image:
+        radial-gradient(ellipse 90% 60% at 50% 0%, rgba(82, 201, 125, 0.18) 0%, transparent 70%);
+      padding: 52px 40px 44px;
+      text-align: center;
+      border-left: 1px solid rgba(82, 201, 125, 0.12);
+      border-right: 1px solid rgba(82, 201, 125, 0.12);
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #52c97d;
+      background: rgba(82, 201, 125, 0.1);
+      border: 1px solid rgba(82, 201, 125, 0.28);
+      border-radius: 20px;
+      padding: 4px 14px;
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 34px;
+      font-weight: 700;
+      color: #eefaf2;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .hero-title span {
+      color: #52c97d;
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      line-height: 1.75;
+      color: rgba(238, 250, 242, 0.6);
+      max-width: 440px;
+      margin: 0 auto 32px;
+    }
+
+    .hero-version-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .version-pill {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      color: #52c97d;
+      background: rgba(82, 201, 125, 0.12);
+      border: 1px solid rgba(82, 201, 125, 0.3);
+      border-radius: 20px;
+      padding: 4px 13px;
+    }
+
+    .date-pill {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: rgba(238, 250, 242, 0.4);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 4px 13px;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background-color: #52c97d;
+      color: #08140c !important;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      border-radius: 24px;
+      padding: 14px 36px;
+      box-shadow: 0 0 24px rgba(82, 201, 125, 0.35);
+      transition: background 0.2s;
+    }
+
+    /* App preview mockup */
+    .app-preview {
+      background-color: #0d1f12;
+      border-left: 1px solid rgba(82, 201, 125, 0.12);
+      border-right: 1px solid rgba(82, 201, 125, 0.12);
+      padding: 0 32px 40px;
+    }
+
+    .mockup-window {
+      background: #0a1a0e;
+      border: 1px solid rgba(82, 201, 125, 0.15);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+    }
+
+    .mockup-titlebar {
+      background: #0f2416;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      border-bottom: 1px solid rgba(82, 201, 125, 0.08);
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .dot-r { background: #ff5f57; }
+    .dot-y { background: #ffbd2e; }
+    .dot-g { background: #28c840; }
+
+    .mockup-titlebar-text {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: rgba(238, 250, 242, 0.3);
+      margin-left: 6px;
+    }
+
+    .mockup-body {
+      padding: 0;
+      line-height: 0;
+      font-size: 0;
+    }
+
+    .mockup-body img {
+      width: 100%;
+      display: block;
+    }
+
+    /* Body content */
+    .content {
+      background-color: #ffffff;
+      padding: 44px 40px 36px;
+      border-left: 1px solid #e8ede9;
+      border-right: 1px solid #e8ede9;
+    }
+
+    .intro-text {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #2d2d2d;
+      margin-bottom: 32px;
+    }
+
+    .intro-text strong {
+      color: #0b1f10;
+    }
+
+    /* Section heading */
+    .section-heading {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #52c97d;
+      margin-bottom: 20px;
+    }
+
+    /* Feature list */
+    .feature-list {
+      list-style: none;
+      margin-bottom: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid #f0f4f1;
+    }
+
+    .feature-item:last-child {
+      border-bottom: none;
+    }
+
+    .feature-icon-box {
+      width: 40px;
+      height: 40px;
+      background: #f0faf4;
+      border: 1px solid #bae9cb;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .feature-icon-box svg {
+      width: 20px;
+      height: 20px;
+      color: #31794b;
+    }
+
+    .feature-text-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0b1f10;
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    .feature-text-desc {
+      font-size: 13px;
+      color: #6b7c6e;
+      line-height: 1.65;
+    }
+
+    /* Divider */
+    .divider {
+      height: 1px;
+      background: #f0f4f1;
+      margin: 8px 0 32px;
+    }
+
+    /* Download block */
+    .download-block {
+      background: #f7fbf8;
+      border: 1px solid #bae9cb;
+      border-radius: 12px;
+      padding: 28px 28px 24px;
+      margin-bottom: 36px;
+    }
+
+    .download-block-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #0b1f10;
+      margin-bottom: 6px;
+    }
+
+    .download-block-sub {
+      font-size: 13px;
+      color: #6b7c6e;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .download-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .meta-chip {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      color: #31794b;
+      background: #dcf4e5;
+      border-radius: 6px;
+      padding: 3px 9px;
+    }
+
+    .meta-chip-grey {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: #6b7c6e;
+      background: #f0f4f1;
+      border-radius: 6px;
+      padding: 3px 9px;
+    }
+
+    .download-btn-email {
+      display: inline-block;
+      background-color: #52c97d;
+      color: #08140c !important;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      border-radius: 20px;
+      padding: 12px 28px;
+      box-shadow: 0 4px 16px rgba(82, 201, 125, 0.25);
+    }
+
+    /* System requirements */
+    .req-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 36px;
+    }
+
+    .req-table td {
+      padding: 11px 0;
+      font-size: 13px;
+      border-bottom: 1px solid #f0f4f1;
+      vertical-align: top;
+    }
+
+    .req-table td:first-child {
+      color: #6b7c6e;
+      width: 42%;
+      padding-right: 12px;
+    }
+
+    .req-table td:last-child {
+      color: #0b1f10;
+      font-weight: 500;
+    }
+
+    .req-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Getting started */
+    .steps-list {
+      list-style: none;
+      margin-bottom: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .step-num {
+      width: 26px;
+      height: 26px;
+      background: #0b1f10;
+      color: #52c97d;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .step-text {
+      font-size: 14px;
+      color: #2d2d2d;
+      line-height: 1.6;
+      padding-top: 3px;
+    }
+
+    .step-text strong {
+      color: #0b1f10;
+    }
+
+    /* Closing note */
+    .closing-note {
+      background: #f7fbf8;
+      border-left: 3px solid #52c97d;
+      border-radius: 0 8px 8px 0;
+      padding: 18px 20px;
+      margin-bottom: 36px;
+    }
+
+    .closing-note p {
+      font-size: 14px;
+      line-height: 1.75;
+      color: #2d2d2d;
+    }
+
+    .closing-note p strong {
+      color: #0b1f10;
+    }
+
+    /* Sign off */
+    .signoff {
+      font-size: 14px;
+      color: #2d2d2d;
+      line-height: 1.8;
+      margin-bottom: 8px;
+    }
+
+    .signoff-name {
+      font-weight: 700;
+      color: #0b1f10;
+      font-size: 15px;
+    }
+
+    .signoff-role {
+      font-size: 13px;
+      color: #6b7c6e;
+    }
+
+    /* Footer */
+    .email-footer {
+      background-color: #08140c;
+      border-radius: 0 0 12px 12px;
+      padding: 32px 40px;
+      text-align: center;
+    }
+
+    .footer-logo-row {
+      margin-bottom: 16px;
+    }
+
+    .footer-logo-row img {
+      height: 22px;
+      width: auto;
+      display: inline-block;
+    }
+
+    .footer-links {
+      margin-bottom: 16px;
+    }
+
+    .footer-links a {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: rgba(238, 250, 242, 0.4);
+      text-decoration: none;
+      margin: 0 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      color: rgba(238, 250, 242, 0.2);
+      line-height: 1.6;
+    }
+
+    /* Responsive */
+    @media only screen and (max-width: 640px) {
+      body { padding: 20px 8px; }
+
+      .top-bar { padding: 14px 20px; }
+      .top-bar-tagline { display: none; }
+
+      .hero { padding: 40px 24px 36px; }
+      .hero-title { font-size: 26px; }
+
+      .app-preview { padding: 0 20px 32px; }
+
+      .content { padding: 32px 24px 28px; }
+
+      .download-block { padding: 22px 20px 20px; }
+
+      .email-footer { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Pre-header text (shows in inbox preview) -->
+  <div class="preheader">
+    Zera Desktop App v0.1.0 is now available for Windows. Download it today and start managing your private cash vouchers offline.
+  </div>
+
+  <div class="email-wrapper">
+
+    <!-- TOP BAR -->
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#08140c;border-radius:12px 12px 0 0;">
+      <tr>
+        <td style="padding:18px 32px;">
+          <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td>
+                <a href="https://zeralabs.org" style="text-decoration:none;display:inline-block;">
+                  <img src="https://zeralabs.org/zeralabs-logotype.webp" alt="Zera Labs" style="height:26px;width:auto;display:block;" />
+                </a>
+              </td>
+              <td align="right">
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(238,250,242,0.35);letter-spacing:0.06em;text-transform:uppercase;">
+                  Product Announcement
+                </span>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+
+    <!-- HERO -->
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#0b1f10;background-image:radial-gradient(ellipse 90% 60% at 50% 0%,rgba(82,201,125,0.18) 0%,transparent 70%);border-left:1px solid rgba(82,201,125,0.12);border-right:1px solid rgba(82,201,125,0.12);">
+      <tr>
+        <td align="center" style="padding:52px 40px 44px;">
+
+          <div style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#52c97d;background:rgba(82,201,125,0.1);border:1px solid rgba(82,201,125,0.28);border-radius:20px;padding:4px 14px;margin-bottom:24px;">
+            Now Available
+          </div>
+
+          <br /><br />
+
+          <h1 style="font-family:'IBM Plex Mono',monospace;font-size:34px;font-weight:700;color:#eefaf2;line-height:1.15;letter-spacing:-0.02em;margin:0 0 16px;">
+            Zera Desktop App<br />
+            <span style="color:#52c97d;">is Here</span>
+          </h1>
+
+          <p style="font-size:15px;line-height:1.75;color:rgba(238,250,242,0.6);max-width:420px;margin:0 auto 28px;">
+            Manage and transfer your private cash vouchers offline using NFC technology. Available now for Windows.
+          </p>
+
+          <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto 32px;">
+            <tr>
+              <td style="padding-right:8px;">
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;color:#52c97d;background:rgba(82,201,125,0.12);border:1px solid rgba(82,201,125,0.3);border-radius:20px;padding:4px 13px;display:inline-block;">
+                  v0.1.0
+                </span>
+              </td>
+              <td>
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:rgba(238,250,242,0.4);background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:4px 13px;display:inline-block;">
+                  Released January 18, 2026
+                </span>
+              </td>
+            </tr>
+          </table>
+
+          <a href="https://api.files.link/v1/p/fbed2c70-ff62-492c-9497-20d5a908c62f" style="display:inline-block;background-color:#52c97d;color:#08140c;font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:700;letter-spacing:0.04em;text-decoration:none;border-radius:24px;padding:14px 36px;box-shadow:0 0 24px rgba(82,201,125,0.35);">
+            &#8595;&nbsp; Download for Windows
+          </a>
+
+        </td>
+      </tr>
+    </table>
+
+
+    <!-- MAIN CONTENT -->
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#ffffff;border-left:1px solid #e8ede9;border-right:1px solid #e8ede9;">
+      <tr>
+        <td style="padding:44px 40px 36px;">
+
+          <!-- Intro -->
+          <p style="font-size:15px;line-height:1.8;color:#2d2d2d;margin-bottom:32px;">
+            Hi there,
+            <br /><br />
+            We are excited to share that <strong style="color:#0b1f10;">Zera Desktop v0.1.0</strong> is officially available for download. This is our first public release and we have put a lot of care into making it reliable, intuitive and genuinely useful for anyone working with private cash vouchers and NFC hardware.
+            <br /><br />
+            Whether you are transferring value offline, managing a collection of vouchers, or just getting started with the Zera ecosystem, this app gives you everything you need in one clean, focused interface.
+          </p>
+
+          <!-- Divider -->
+          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:28px;">
+            <tr><td style="height:1px;background:#f0f4f1;font-size:0;line-height:0;">&nbsp;</td></tr>
+          </table>
+
+          <!-- Features -->
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#52c97d;margin-bottom:20px;">
+            What is New in v0.1.0
+          </p>
+
+          <!-- Feature 1 -->
+          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:0;">
+            <tr>
+              <td style="padding:18px 0;border-bottom:1px solid #f0f4f1;vertical-align:top;width:56px;">
+                <table cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td style="width:40px;height:40px;background:#f0faf4;border:1px solid #bae9cb;border-radius:10px;text-align:center;vertical-align:middle;">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#31794b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;">
+                        <rect x="2" y="7" width="20" height="14" rx="2"/>
+                        <path d="M16 3H8M12 3v4"/>
+                        <circle cx="12" cy="14" r="2"/>
+                        <path d="M12 16v2"/>
+                      </svg>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+              <td style="padding:18px 0 18px 16px;border-bottom:1px solid #f0f4f1;vertical-align:top;">
+                <p style="font-size:14px;font-weight:700;color:#0b1f10;margin-bottom:5px;line-height:1.3;">Improved Hardware Compatibility</p>
+                <p style="font-size:13px;color:#6b7c6e;line-height:1.65;margin:0;">
+                  Expanded support for a wider range of NFC readers and PC/SC compatible hardware. Plug in your ACR122U or similar reader and the app detects it automatically, no extra configuration needed.
+                </p>
+              </td>
+            </tr>
+          </table>
+
+          <!-- Feature 2 -->
+          <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td style="padding:18px 0;border-bottom:1px solid #f0f4f1;vertical-align:top;width:56px;">
+                <table cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td style="width:40px;height:40px;background:#f0faf4;border:1px solid #bae9cb;border-radius:10px;text-align:center;vertical-align:middle;">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#31794b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;">
+                        <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7L12 2z"/>
+                        <path d="M9 12l2 2 4-4"/>
+                      </svg>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+              <td style="padding:18px 0 18px 16px;border-bottom:1px solid #f0f4f1;vertical-align:top;">
+                <p style="font-size:14px;font-weight:700;color:#0b1f10;margin-bottom:5px;line-height:1.3;">Advanced Scam Detection</p>
+                <p style="font-size:13px;color:#6b7c6e;line-height:1.65;margin:0;">
+                  Every voucher is cryptographically validated before any transfer takes place. The app checks nullifiers in real time to catch tampered, duplicated or counterfeit vouchers before they ever touch your NFC tag.
+                </p>
+              </td>
+            </tr>
+          </table>
+
+          <!-- Feature 3 -->
+          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:36px;">
+            <tr>
+              <td style="padding:18px 0;vertical-align:top;width:56px;">
+                <table cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td style="width:40px;height:40px;background:#f0faf4;border:1px solid #bae9cb;border-radius:10px;text-align:center;vertical-align:middle;">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#31794b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;">
+                        <path d="M9.5 2a2.5 2.5 0 0 1 5 0v.5"/>
+                        <path d="M14.5 2.5C17.5 3 20 5.5 20 9c0 2-.8 3.8-2 5"/>
+                        <path d="M9.5 2.5C6.5 3 4 5.5 4 9c0 2 .8 3.8 2 5"/>
+                        <path d="M8 14a4 4 0 0 0 8 0"/>
+                        <path d="M12 18v3"/>
+                        <path d="M9 21h6"/>
+                        <circle cx="9" cy="9" r="1.2" fill="#31794b" stroke="none"/>
+                        <circle cx="15" cy="9" r="1.2" fill="#31794b" stroke="none"/>
+                      </svg>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+              <td style="padding:18px 0 18px 16px;vertical-align:top;">
+                <p style="font-size:14px;font-weight:700;color:#0b1f10;margin-bottom:5px;line-height:1.3;">In-Built AI Support</p>
+                <p style="font-size:13px;color:#6b7c6e;line-height:1.65;margin:0;">
+                  A built-in AI assistant is available right inside the app. Ask it anything from first-time setup questions to advanced voucher workflows and it will walk you through it clearly, without needing to open a browser or search a docs page.
+                </p>
+              </td>
+            </tr>
+          </table>
+
+          <!-- Divider -->
+          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:32px;">
+            <tr><td style="height:1px;background:#f0f4f1;font-size:0;line-height:0;">&nbsp;</td></tr>
+          </table>
+
+          <!-- Download block -->
+          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f7fbf8;border:1px solid #bae9cb;border-radius:12px;margin-bottom:36px;">
+            <tr>
+              <td style="padding:28px 28px 24px;">
+                <p style="font-size:16px;font-weight:700;color:#0b1f10;margin-bottom:6px;">Download Zera Desktop for Windows</p>
+                <p style="font-size:13px;color:#6b7c6e;margin-bottom:20px;line-height:1.6;">
+                  Run the MSI installer, connect your NFC reader and you are ready to go.
+                </p>
+
+                <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;">
+                  <tr>
+                    <td style="padding-right:6px;">
+                      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:#31794b;background:#dcf4e5;border-radius:6px;padding:3px 9px;display:inline-block;">
+                        Windows x64
+                      </span>
+                    </td>
+                    <td style="padding-right:6px;">
+                      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6b7c6e;background:#f0f4f1;border-radius:6px;padding:3px 9px;display:inline-block;">
+                        v0.1.0
+                      </span>
+                    </td>
+                    <td style="padding-right:6px;">
+                      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6b7c6e;background:#f0f4f1;border-radius:6px;padding:3px 9px;display:inline-block;">
+                        MSI &nbsp;&#183;&nbsp; 3 MB
+                      </span>
+                    </td>
+                  </tr>
+                </table>
+
+                <a href="https://api.files.link/v1/p/fbed2c70-ff62-492c-9497-20d5a908c62f" style="display:inline-block;background-color:#52c97d;color:#08140c;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:700;letter-spacing:0.04em;text-decoration:none;border-radius:20px;padding:12px 28px;box-shadow:0 4px 16px rgba(82,201,125,0.25);">
+                  &#8595;&nbsp; Download Now
+                </a>
+              </td>
+            </tr>
+          </table>
+
+          <!-- Divider -->
+          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:32px;">
+            <tr><td style="height:1px;background:#f0f4f1;font-size:0;line-height:0;">&nbsp;</td></tr>
+          </table>
+
+          <!-- Getting started -->
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#52c97d;margin-bottom:20px;">
+            Getting Started
+          </p>
+
+          <!-- Step 1 -->
+          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:14px;">
+            <tr>
+              <td style="vertical-align:top;width:40px;">
+                <table cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td style="width:26px;height:26px;background:#0b1f10;border-radius:50%;text-align:center;vertical-align:middle;">
+                      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;color:#52c97d;line-height:26px;">1</span>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+              <td style="vertical-align:top;padding-left:14px;padding-top:3px;">
+                <p style="font-size:14px;color:#2d2d2d;line-height:1.6;margin:0;">
+                  <strong style="color:#0b1f10;">Connect your NFC reader</strong> to your Windows PC via USB. The ACR122U is recommended and works out of the box.
+                </p>
+              </td>
+            </tr>
+          </table>
+
+          <!-- Step 2 -->
+          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:14px;">
+            <tr>
+              <td style="vertical-align:top;width:40px;">
+                <table cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td style="width:26px;height:26px;background:#0b1f10;border-radius:50%;text-align:center;vertical-align:middle;">
+                      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;color:#52c97d;line-height:26px;">2</span>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+              <td style="vertical-align:top;padding-left:14px;padding-top:3px;">
+                <p style="font-size:14px;color:#2d2d2d;line-height:1.6;margin:0;">
+                  <strong style="color:#0b1f10;">Download and install</strong> the MSI package from <a href="https://zeradesktop.app" style="color:#31794b;text-decoration:underline;">zeradesktop.app</a>. Run the installer and follow the setup wizard.
+                </p>
+              </td>
+            </tr>
+          </table>
+
+          <!-- Step 3 -->
+          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:14px;">
+            <tr>
+              <td style="vertical-align:top;width:40px;">
+                <table cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td style="width:26px;height:26px;background:#0b1f10;border-radius:50%;text-align:center;vertical-align:middle;">
+                      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;color:#52c97d;line-height:26px;">3</span>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+              <td style="vertical-align:top;padding-left:14px;padding-top:3px;">
+                <p style="font-size:14px;color:#2d2d2d;line-height:1.6;margin:0;">
+                  <strong style="color:#0b1f10;">Drag your vouchers</strong> to the write zone and tap your NTAG216 NFC tag to transfer them. It really is that simple.
+                </p>
+              </td>
+            </tr>
+          </table>
+
+          <!-- Step 4 -->
+          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:36px;">
+            <tr>
+              <td style="vertical-align:top;width:40px;">
+                <table cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td style="width:26px;height:26px;background:#0b1f10;border-radius:50%;text-align:center;vertical-align:middle;">
+                      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;color:#52c97d;line-height:26px;">4</span>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+              <td style="vertical-align:top;padding-left:14px;padding-top:3px;">
+                <p style="font-size:14px;color:#2d2d2d;line-height:1.6;margin:0;">
+                  <strong style="color:#0b1f10;">Use the read function</strong> to retrieve vouchers from any NTAG216 tag and bring them back into your collection.
+                </p>
+              </td>
+            </tr>
+          </table>
+
+          <!-- Divider -->
+          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:32px;">
+            <tr><td style="height:1px;background:#f0f4f1;font-size:0;line-height:0;">&nbsp;</td></tr>
+          </table>
+
+          <!-- System requirements -->
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#52c97d;margin-bottom:16px;">
+            System Requirements
+          </p>
+
+          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:36px;">
+            <tr>
+              <td style="padding:11px 0;border-bottom:1px solid #f0f4f1;font-size:13px;color:#6b7c6e;width:42%;vertical-align:top;">Operating System</td>
+              <td style="padding:11px 0;border-bottom:1px solid #f0f4f1;font-size:13px;color:#0b1f10;font-weight:500;vertical-align:top;">Windows 10 or Windows 11 (64-bit)</td>
+            </tr>
+            <tr>
+              <td style="padding:11px 0;border-bottom:1px solid #f0f4f1;font-size:13px;color:#6b7c6e;width:42%;vertical-align:top;">NFC Reader</td>
+              <td style="padding:11px 0;border-bottom:1px solid #f0f4f1;font-size:13px;color:#0b1f10;font-weight:500;vertical-align:top;">ACR122U or any PC/SC compatible reader</td>
+            </tr>
+            <tr>
+              <td style="padding:11px 0;border-bottom:1px solid #f0f4f1;font-size:13px;color:#6b7c6e;width:42%;vertical-align:top;">NFC Tags</td>
+              <td style="padding:11px 0;border-bottom:1px solid #f0f4f1;font-size:13px;color:#0b1f10;font-weight:500;vertical-align:top;">NTAG216</td>
+            </tr>
+            <tr>
+              <td style="padding:11px 0;font-size:13px;color:#6b7c6e;width:42%;vertical-align:top;">Download Size</td>
+              <td style="padding:11px 0;font-size:13px;color:#0b1f10;font-weight:500;vertical-align:top;">3 MB (MSI installer)</td>
+            </tr>
+          </table>
+
+          <!-- Divider -->
+          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:32px;">
+            <tr><td style="height:1px;background:#f0f4f1;font-size:0;line-height:0;">&nbsp;</td></tr>
+          </table>
+
+          <!-- Closing note -->
+          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:36px;">
+            <tr>
+              <td style="background:#f7fbf8;border-left:3px solid #52c97d;border-radius:0 8px 8px 0;padding:18px 20px;">
+                <p style="font-size:14px;line-height:1.75;color:#2d2d2d;margin:0;">
+                  This is an early release. We are actively working on new features, broader platform support and deeper integration with the Zera ecosystem. Your feedback during this phase means a great deal to us. If you run into anything or have suggestions, please reach out directly or join the conversation on Telegram.
+                </p>
+              </td>
+            </tr>
+          </table>
+
+          <!-- Sign off -->
+          <p style="font-size:14px;color:#2d2d2d;line-height:1.8;margin-bottom:4px;">
+            Thank you for being part of this journey.
+          </p>
+          <p style="font-size:14px;color:#2d2d2d;line-height:1.8;margin-bottom:20px;">
+            Warm regards,
+          </p>
+          <p style="font-size:15px;font-weight:700;color:#0b1f10;margin-bottom:2px;">The Zera Labs Team</p>
+          <p style="font-size:13px;color:#6b7c6e;">ZeraLabs LLC &nbsp;&#183;&nbsp; Austin, Texas</p>
+
+        </td>
+      </tr>
+    </table>
+
+    <!-- FOOTER -->
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#08140c;border-radius:0 0 12px 12px;">
+      <tr>
+        <td align="center" style="padding:32px 40px;">
+
+          <div style="margin-bottom:16px;">
+            <a href="https://zeralabs.org" style="text-decoration:none;display:inline-block;">
+              <img src="https://zeralabs.org/zeralabs-logotype.webp" alt="Zera Labs" style="height:22px;width:auto;display:inline-block;" />
+            </a>
+          </div>
+
+          <div style="margin-bottom:16px;">
+            <a href="https://zeralabs.org" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(238,250,242,0.4);text-decoration:none;margin:0 10px;letter-spacing:0.06em;text-transform:uppercase;">Home</a>
+            <a href="https://zeralabs.org/docs" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(238,250,242,0.4);text-decoration:none;margin:0 10px;letter-spacing:0.06em;text-transform:uppercase;">Docs</a>
+            <a href="https://zeradesktop.app" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(238,250,242,0.4);text-decoration:none;margin:0 10px;letter-spacing:0.06em;text-transform:uppercase;">Download</a>
+            <a href="https://zeralabs.org/terms" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(238,250,242,0.4);text-decoration:none;margin:0 10px;letter-spacing:0.06em;text-transform:uppercase;">Terms</a>
+          </div>
+
+          <p style="font-size:11px;color:rgba(238,250,242,0.2);line-height:1.6;margin:0;">
+            &copy; 2025 ZeraLabs LLC. All rights reserved.<br />
+            You are receiving this because you signed up for Zera updates.<br />
+            <a href="#" style="color:rgba(238,250,242,0.3);text-decoration:underline;">Unsubscribe</a>
+          </p>
+
+        </td>
+      </tr>
+    </table>
+
+  </div><!-- end email-wrapper -->
+
+</body>
+</html>
